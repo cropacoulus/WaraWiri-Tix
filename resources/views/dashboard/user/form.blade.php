@@ -4,16 +4,18 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-8">
+                <div class="col-8 align-self-center">
                     <h3>Users</h3>
                 </div>
                 <div class="col-4 text-right">
-                   <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                   <button class="btn btn-sm text-secondary" data-toggle="modal" data-target="#deleteModal" title="delete">
+                       <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="card-body p-0">
+        <div class="card-body">
            <div class="row">
                <div class="col-md-8 offset-md-2">
                    <form action="{{ url('dashboard/user/update/'.$user->id) }}" method="POST">
@@ -33,8 +35,9 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Update</button>
+                        <div class="form-group mb-0">
+                            <button type="button" onclick="window.history.back()" class="btn btn-sm btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-success">Update</button>
                         </div>
                     </form>
                </div>
@@ -57,7 +60,7 @@
                     <form action="{{ url('dashboard/user/delete/'.$user->id) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
                     </form>
                 </div>
             </div>

@@ -42,10 +42,16 @@ h6 {
 table.table tr td {
   color: #737373;
   font-size: 0.9em;
+  vertical-align: middle;
 }
 
 .pagination {
   justify-content: center;
   align-items: center;
+}
+
+.form-group label {
+  margin-bottom: 0px;
+  font-weight: bold;
 }
 
