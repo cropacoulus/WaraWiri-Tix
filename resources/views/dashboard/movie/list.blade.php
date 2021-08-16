@@ -30,8 +30,8 @@
                 <table class="table table-striped table-borderless table-hover">
                     <thead>
                         <tr>
-                            <th>Title</th>
                             <th>Thumbnail</th>
+                            <th>Title</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -39,11 +39,11 @@
                         @foreach ($movies as $movie)
                             <tr>
                                 <td>
-                                    <img width="600"  class="img-fluid" src="{{ asset('storage/movies/'. $movie->thumbnail) }}">
+                                    <img  class="img-fluid" src="{{ asset('storage/movies/'. $movie->thumbnail) }}">
                                 </td>
                                 <td class="col-thumbnail"><h4><strong>{{ $movie->title }}</strong></h4></td>
                                 <td>
-                                    <a href="{{ route('dashboard.movies.edit', ['id' => $movie->id]) }}" title="edit" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
+                                    <a href="{{ route('dashboard.movies.edit', $movie->id) }}" title="edit" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
                                 </td>
                             </tr>
                         @endforeach
