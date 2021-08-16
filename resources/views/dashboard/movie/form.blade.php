@@ -64,11 +64,11 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Anda yakin ingin menghapus movie </p>
+                    <p>Anda yakin ingin menghapus movie {{ $movie->title }} </p>
                 </div>
 
                 <div class="modal-footer">
-                    <form action="{{ route('dashboard.movies.delete') }}" method="POST">
+                    <form action="{{ route('dashboard.movies.delete', $movie->id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
