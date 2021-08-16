@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    <div class="mb-2">
+        <a href="{{ route('dashboard.movies.create') }}" class="btn btn-primary-outline btn-sm">+ Movie</a>
+    </div>
+
+
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -25,7 +30,6 @@
                 <table class="table table-striped table-borderless table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Title</th>
                             <th>Thumbnail</th>
                             <th>&nbsp;</th>
@@ -34,9 +38,10 @@
                     <tbody>
                         @foreach ($movies as $movie)
                             <tr>
-                                <th scope="row">{{ ($users->currentPage()- 1) * $movies->perPage() + $loop->iteration }}</th>
-                                <td>{{ $movie->title }}</td>
-                                <td>{{ $movie->thumbnail }}</td>
+                                <td>
+                                    <img class="img-fluid" src="{{ asset('storage/movies/'. $movie->thumbnail) }}">
+                                </td>
+                                <td class="col-thumbnail"><h6><strong>{{ $movie->title }}</strong></h6></td>
                                 <td>
                                     <a href="{{ route('dashboard.movies.edit', ['id' => $movie->id]) }}" title="edit" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
                                 </td>
