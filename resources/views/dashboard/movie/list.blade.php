@@ -6,6 +6,15 @@
     </div>
 
 
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            <strong>{{ __(session()->get('message'), ['title' => 'Laut']) }}</strong>
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <div class="row">
