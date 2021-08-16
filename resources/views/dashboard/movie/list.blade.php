@@ -39,9 +39,9 @@
                         @foreach ($movies as $movie)
                             <tr>
                                 <td>
-                                    <img class="img-fluid" src="{{ asset('storage/movies/'. $movie->thumbnail) }}">
+                                    <img width="600"  class="img-fluid" src="{{ asset('storage/movies/'. $movie->thumbnail) }}">
                                 </td>
-                                <td class="col-thumbnail"><h6><strong>{{ $movie->title }}</strong></h6></td>
+                                <td class="col-thumbnail"><h4><strong>{{ $movie->title }}</strong></h4></td>
                                 <td>
                                     <a href="{{ route('dashboard.movies.edit', ['id' => $movie->id]) }}" title="edit" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
                                 </td>
