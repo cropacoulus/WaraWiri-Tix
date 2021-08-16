@@ -18,19 +18,21 @@
         <div class="card-body">
            <div class="row">
                <div class="col-md-8 offset-md-2">
-                   <form action="{{ route($url, $movie->id) }}" method="POST" enctype="multipart/form-data">
+                   <form action="{{ route($url, $movie->id ?? '') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('put')
+                        @if(isset($movie))
+                            @method('put')
+                        @endif
                         <div class="form-group">
                             <label for="name">Title</label>
-                            <input type="text" class="form-control @error('title'){{ 'is-invalid' }}  @enderror" name="title" value="{{ old('title') ?? $movie->title }}">
+                            <input type="text" class="form-control @error('title'){{ 'is-invalid' }}  @enderror" name="title" value="{{ old('title') ?? $movie->title ?? '' }}">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea  class="form-control @error('description'){{ 'is-invalid' }} @enderror" name="description" cols="30" rows="10">{{ old('description') ?? $movie->description }}</textarea>
+                            <textarea  class="form-control @error('description'){{ 'is-invalid' }} @enderror" name="description" cols="30" rows="10">{{ old('description') ?? $movie->description ?? '' }}</textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -55,26 +57,29 @@
         </div>
     </div>
     
-    <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Delete</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+    @if (isset($movie))
+        <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <div class="modal-body">
-                    <p>Anda yakin ingin menghapus movie {{ $movie->title }} </p>
-                </div>
+                    <div class="modal-body">
+                        <p>Anda yakin ingin menghapus movie {{ $movie->title }} </p>
+                    </div>
 
-                <div class="modal-footer">
-                    <form action="{{ route('dashboard.movies.delete', $movie->id) }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                    </form>
+                    <div class="modal-footer">
+                        <form action="{{ route('dashboard.movies.delete', $movie->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
 @endsection
